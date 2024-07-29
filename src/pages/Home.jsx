@@ -96,7 +96,7 @@ function Home() {
                                         <a>
                                             <div className="grids-1 box-wrap">
                                                 <a href="#more" className="icon"><span className="fa fa-question-circle"></span></a>
-                                                <h4><a href="/Matiere/s1" className="title-head">Simester S1</a></h4>
+                                                <h4><a href="/Matiere?semestre=s1" className="title-head">Simester S1</a></h4>
                                                 <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet laoreet.</p>
                                             </div>
                                         </a>
@@ -105,7 +105,7 @@ function Home() {
                                         <a>
                                             <div className="grids-1 box-wrap">
                                                 <a href="#more" className="icon"><span className="fa fa-cogs"></span></a>
-                                                <h4><a href="/Matiere/s2" className="title-head">Simester S2</a></h4>
+                                                <h4><a href="/Matiere?semestre=s2" className="title-head">Simester S2</a></h4>
                                                 <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet laoreet.</p>
                                             </div>
                                         </a>
@@ -115,7 +115,7 @@ function Home() {
                                         <a>
                                             <div className="grids-1 box-wrap">
                                                 <a href="#more" className="icon"><span className="fa fa-laptop"></span></a>
-                                                <h4><a href="/Matiere/s3" className="title-head">Simester S3</a></h4>
+                                                <h4><a href="/Matiere?semestre=s3" className="title-head">Simester S3</a></h4>
                                                 <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet laoreet.</p>
                                             </div>
                                         </a>
@@ -125,7 +125,7 @@ function Home() {
                                         <a>
                                             <div className="grids-1 box-wrap">
                                                 <a href="#more" className="icon"><span className="fa fa-code"></span></a>
-                                                <h4><a href="/Matiere/s4" className="title-head">Simester S4</a></h4>
+                                                <h4><a href="/Matiere?semestre=s4" className="title-head">Simester S4</a></h4>
                                                 <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet laoreet.</p>
                                             </div>
                                         </a>
@@ -134,7 +134,7 @@ function Home() {
                                         <a>
                                             <div className="grids-1 box-wrap">
                                                 <a href="#more" className="icon"><span className="fa fa-lightbulb-o"></span></a>
-                                                <h4><a href="/Matiere/s5" className="title-head">Simester S5</a></h4>
+                                                <h4><a href="/Matiere?semestre=s5" className="title-head">Simester S5</a></h4>
                                                 <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet laoreet.</p>
                                             </div>
                                         </a>
@@ -143,7 +143,7 @@ function Home() {
                                         <a>
                                             <div className="grids-1 box-wrap">
                                                 <a href="#more" className="icon"><span className="fa fa-graduation-cap"></span></a>
-                                                <h4><a href="/Matiere/s6" className="title-head">Simester S6</a></h4>
+                                                <h4><a href="/Matiere?semestre=s6" className="title-head">Simester S6</a></h4>
                                                 <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet laoreet.</p>
                                             </div>
                                         </a>

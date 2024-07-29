@@ -17633,8 +17633,35 @@ span.plus {
   }
 }
 .custom-width {
-  width: 100%;
-  max-width: 100%;
+  width: 70%;
+  max-width: 80%;
   margin-top: 5rem;
   padding: 0;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 15%;
+  margin-top: 5rem;
+
 }
+
+
+
+.select-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-select {
+  background-color: var(--highlight-color);
+  color: var(--highlight-text-color);
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px; 
+}
+
+
+
+
+
