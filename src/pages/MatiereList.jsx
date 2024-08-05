@@ -17,12 +17,12 @@ const MatiereManager = () => {
   }, []);
 
   const loadMatieres = async () => {
-    const result = await axios.get('http://192.168.100.8:8084/matieres');
+    const result = await axios.get('http://192.168.101.72:8084/matieres');
     setMatieres(result.data);
   };
 
   const deleteMatiere = async (id) => {
-    await axios.delete(`http://192.168.100.8:8084/matieres/${id}`);
+    await axios.delete(`http://192.168.101.72:8084/matieres/${id}`);
     loadMatieres();
   };
 
@@ -46,16 +46,16 @@ const MatiereManager = () => {
   };
 
   const loadMatiere = async (id) => {
-    const result = await axios.get(`http://192.168.100.8:8084/matieres/${id}`);
+    const result = await axios.get(`http://192.168.101.72:8084/matieres/${id}`);
     setMatiere(result.data);
   };
 
   const onSubmit = async e => {
     e.preventDefault();
     if (modalMode === 'add') {
-      await axios.post('http://192.168.100.8:8084/matieres', matiere);
+      await axios.post('http://192.168.101.72:8084/matieres', matiere);
     } else if (modalMode === 'edit') {
-      await axios.put(`http://192.168.100.8:8084/matieres/${currentId}`, matiere);
+      await axios.put(`http://192.168.101.72:8084/matieres/${currentId}`, matiere);
     }
     loadMatieres();
     handleCloseModal();

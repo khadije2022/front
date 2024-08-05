@@ -25,7 +25,6 @@ function BreadCrumps(props) {
           </svg>
         </div>
       </section>
-      {/* //about breadcrumb */}
     </div>
   );
 }

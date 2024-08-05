@@ -2,25 +2,25 @@ import React, { useState } from "react";
 
 function Header() {
   const currentTheme = localStorage.getItem('theme');
-    
+
   if (currentTheme) {
-      document.documentElement.setAttribute('data-theme', currentTheme);
+    document.documentElement.setAttribute('data-theme', currentTheme);
   }
 
   const [checked, setChecked] = useState(currentTheme === 'dark')
-  
-  function changeTheme(e){   
+
+  function changeTheme(e) {
     if (e.target.checked) {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('theme', 'dark');
       setChecked(true)
-  }
-  else {       
-     document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        setChecked(false)
-  }     
-    
+    }
+    else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+      setChecked(false)
+    }
+
   }
   return (
     <div>
@@ -29,17 +29,17 @@ function Header() {
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-dark stroke">
             <h1>
-              
+
               <a className="navbar-brand" href="/">
-              <a className="navbar-brand" href="#/"> 
-    <img src="./assets/images/logo.png" alt="Your logo" title="Your logo" style={{height: '35px'}} />
-</a>
+                <a className="navbar-brand" href="#/">
+                  <img src="./assets/images/logo.png" alt="Your logo" title="Your logo" style={{ width: '35px' }} />
+                </a>
                 Archive Supnum
               </a>
             </h1>
 
-           
-                   
+
+
             <button
               className="navbar-toggler  collapsed bg-gradient"
               type="button"
@@ -55,8 +55,8 @@ function Header() {
 
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav mx-lg-auto">
-                
-                
+
+
               </ul>
 
               {/*/search-right*/}

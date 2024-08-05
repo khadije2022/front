@@ -20,12 +20,12 @@ const UserListe = () => {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get('http://192.168.100.8:8084/user_list');
+    const result = await axios.get('http://192.168.101.72:8084/user_list');
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://192.168.100.8:8084/user_list/${id}`);
+    await axios.delete(`http://192.168.101.72:8084/user_list/${id}`);
     loadUsers();
   };
 
@@ -55,16 +55,16 @@ const UserListe = () => {
   };
 
   const loadUser = async (id) => {
-    const result = await axios.get(`http://192.168.100.8:8084/user_list/${id}`);
+    const result = await axios.get(`http://192.168.101.72:8084/user_list/${id}`);
     setUser(result.data);
   };
 
   const onSubmit = async e => {
     e.preventDefault();
     if (modalMode === 'add') {
-      await axios.post('http://192.168.100.8:8084/user_list', user);
+      await axios.post('http://192.168.101.72:8084/user_list', user);
     } else if (modalMode === 'edit') {
-      await axios.put(`http://192.168.100.8:8084/user_list/${currentId}`, user);
+      await axios.put(`http://192.168.101.72:8084/user_list/${currentId}`, user);
     }
     loadUsers();
     handleCloseModal();

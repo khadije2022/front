@@ -5,7 +5,8 @@ import Contact from "./pages/Contact";
 import Courses from "./pages/Courses";
 import Home from "./pages/Home";
 import Header from "./components/Header";
-import HeaderAlt from "./components/HeaderAlt"; // Import du Header alternatif
+import HeaderAlt from "./components/HeaderAlt";
+import HeadLogin from "./components/HeadLogin"; // Assurez-vous que le nom du fichier est HeaderLogin.jsx
 import Footer from "./components/Footer";
 import Types from "./pages/Types";
 import Affiche from "./pages/Affiche";
@@ -15,6 +16,7 @@ import AddMatiere from "./pages/AddMatiere";
 import EditMatiere from "./pages/EditMatiere";
 import UserListe from "./pages/UserListe";
 import SujetListe from "./pages/SujetListe";
+import LoginForm from "./pages/LoginForm";
 
 function App() {
   const location = useLocation();
@@ -33,9 +35,21 @@ function App() {
     location.pathname.includes(route.replace(":id", ""))
   );
 
+  // Vérifier si la route actuelle correspond à la route de login
+  const isLoginRoute = location.pathname === "/login";
+
+  let HeaderComponent;
+  if (isLoginRoute) {
+    HeaderComponent = HeadLogin;
+  } else if (isAlternateHeaderRoute) {
+    HeaderComponent = HeaderAlt;
+  } else {
+    HeaderComponent = Header;
+  }
+
   return (
     <div>
-      {isAlternateHeaderRoute ? <HeaderAlt /> : <Header />} {/* Utilisation du Header alternatif si la route correspond */}
+      <HeaderComponent />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Matiere" element={<Matieres />} />
@@ -49,6 +63,7 @@ function App() {
         <Route path="/edit/:id" element={<EditMatiere />} />
         <Route path="/users" element={<UserListe />} />
         <Route path="/SujetListe" element={<SujetListe />} />
+        <Route path="/login" element={<LoginForm />} />
       </Routes>
       <Footer />
     </div>

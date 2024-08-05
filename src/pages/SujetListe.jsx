@@ -5,6 +5,7 @@ import { Button, Modal, Form, Table } from 'react-bootstrap';
 const SujetListe = () => {
   const [sujets, setSujets] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showFileModal, setShowFileModal] = useState(false);
   const [modalMode, setModalMode] = useState('add'); // 'add' or 'edit'
   const [sujet, setSujet] = useState({
     annee: '',
@@ -13,18 +14,19 @@ const SujetListe = () => {
     matiereIdMatiere: ''
   });
   const [currentId, setCurrentId] = useState(null);
+  const [fileToShow, setFileToShow] = useState({ base64: '', type: '' });
 
   useEffect(() => {
     loadSujets();
   }, []);
 
   const loadSujets = async () => {
-    const result = await axios.get('http://192.168.100.8:8084/sujets');
+    const result = await axios.get('http://192.168.101.72:8084/sujets');
     setSujets(result.data);
   };
 
   const deleteSujet = async (id) => {
-    await axios.delete(`http://192.168.100.8:8084/sujets/${id}`);
+    await axios.delete(`http://192.168.101.72:8084/sujets/${id}`);
     loadSujets();
   };
 
@@ -61,8 +63,12 @@ const SujetListe = () => {
     setShowModal(false);
   };
 
+  const handleCloseFileModal = () => {
+    setShowFileModal(false);
+  };
+
   const loadSujet = async (id) => {
-    const result = await axios.get(`http://192.168.100.8:8084/sujets/${id}`);
+    const result = await axios.get(`http://192.168.101.72:8084/sujets/${id}`);
     setSujet({
       ...result.data,
       sujet: result.data.sujetBase64
@@ -78,9 +84,9 @@ const SujetListe = () => {
 
     try {
       if (modalMode === 'add') {
-        await axios.post('http://192.168.100.8:8084/sujets', sujetData);
+        await axios.post('http://192.168.101.72:8084/sujets', sujetData);
       } else if (modalMode === 'edit') {
-        await axios.put(`http://192.168.100.8:8084/sujets/${currentId}`, sujetData);
+        await axios.put(`http://192.168.101.72:8084/sujets/${currentId}`, sujetData);
       }
       loadSujets();
       handleCloseModal();
@@ -89,8 +95,32 @@ const SujetListe = () => {
     }
   };
 
+  const getFileMimeType = (base64) => {
+    const signatures = {
+      'JVBERi0': 'application/pdf',
+      '/9j/': 'image/jpeg',
+      'iVBORw0KGgo': 'image/png',
+      'R0lGODdh': 'image/gif',
+      'UklGR': 'image/webp'
+    };
+
+    for (const signature in signatures) {
+      if (base64.startsWith(signature)) {
+        return signatures[signature];
+      }
+    }
+
+    return 'application/octet-stream';
+  };
+
+  const handleShowFile = (base64) => {
+    const type = getFileMimeType(base64);
+    setFileToShow({ base64, type });
+    setShowFileModal(true);
+  };
+
   return (
-    <div className="containerw3l-team py-5 custom-width">
+    <div className="container w3l-team py-5 custom-width">
       <div className="py-4">
         <h1>Liste des Sujets</h1>
         <Button className="btn btn-primary" onClick={() => handleShowModal('add')}>Ajouter Sujet</Button>
@@ -110,9 +140,13 @@ const SujetListe = () => {
               <tr key={sujet.id}>
                 <th scope="row">{index + 1}</th>
                 <td>{sujet.annee}</td>
-                <td><a href={`data:application/pdf;base64,${sujet.sujetBase64}`} target="_blank" rel="noopener noreferrer">Voir Sujet</a></td>
+                <td>
+                  <Button variant="link" onClick={() => handleShowFile(sujet.sujetBase64)}>
+                    Voir Sujet
+                  </Button>
+                </td>
                 <td>{sujet.type}</td>
-                <td>{sujet.matiereIdMatiere}</td>
+                <td>{sujet.matiere.id}</td>
                 <td>
                   <Button variant="outline-primary" className="mr-2" onClick={() => handleShowModal('edit', sujet.id)}>Modifier</Button>
                   <Button variant="danger" onClick={() => deleteSujet(sujet.id)}>Supprimer</Button>
@@ -174,6 +208,19 @@ const SujetListe = () => {
               {modalMode === 'add' ? 'Ajouter Sujet' : 'Modifier Sujet'}
             </Button>
           </Form>
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={showFileModal} onHide={handleCloseFileModal} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>Afficher le Sujet</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {fileToShow.type === 'application/pdf' ? (
+            <embed src={`data:${fileToShow.type};base64,${fileToShow.base64}`} type={fileToShow.type} width="100%" height="500px" />
+          ) : (
+            <img src={`data:${fileToShow.type};base64,${fileToShow.base64}`} alt="Sujet" style={{ width: '100%' }} />
+          )}
         </Modal.Body>
       </Modal>
     </div>
